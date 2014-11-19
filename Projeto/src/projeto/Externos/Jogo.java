@@ -1,15 +1,18 @@
 package projeto.Externos;
+
 import projeto.Outros.Data;
+import projeto.Interfaces.Atualizavel;
 /*
  * @author Gio
  */
-public class Jogo {
+public class Jogo implements Atualizavel, Comparable{
     private String nome; // nome do jogo (hurr)
     private Data lancamento; // lançamento do jogo (durr)
     private String distribuidora; // capcom, konami, gamefreak, etc
     private String plataforma; // xbox one, nintendo wiiu, playstation 4, etc 
     private double tamanho; // tamanho do jogo
     private double preco;
+    private double versao; // jogos também atualizam
     
     // construtor vazio
     public Jogo(){
@@ -21,6 +24,7 @@ public class Jogo {
         this.plataforma = "<plataforma>";
         this.tamanho = 0.100; // 100mb
         this.preco = 0;
+        this.versao = 1.0;
     }
     
     // construtor
@@ -42,6 +46,7 @@ public class Jogo {
         this.plataforma = outro.plataforma;
         this.tamanho = outro.tamanho;
         this.preco = outro.preco;
+        this.versao = outro.versao;
     }
     
     // gets
@@ -67,6 +72,10 @@ public class Jogo {
     
     public double getPreco(){
         return this.preco;
+    }
+    
+    public double getVersao(){
+        return this.versao;
     }
     
     // sets
@@ -117,6 +126,15 @@ public class Jogo {
         else this.preco = preco; 
     }
     
+    public void setVersao( double versao ){
+        if ( versao < this.versao ){
+            System.out.println("\nErro. Versão inserida mais antiga que "
+                    + "a atual.");
+            System.out.println("Mantendo a versão atual...");
+        }
+        else this.versao = versao;
+    }
+    
     // outras funções
     @Override
     public String toString(){
@@ -133,5 +151,15 @@ public class Jogo {
         resultado.append("Preço: R$" + s + ".\n");
         
         return resultado.toString();
+    }
+    
+    @Override
+    public void atualizar(){
+        // faz algo
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

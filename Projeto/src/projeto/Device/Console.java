@@ -6,10 +6,12 @@ import projeto.Externos.Controle;
 import projeto.Outros.Data;
 import projeto.Externos.Jogo;
 import projeto.Interfaces.Jogavel;
+import projeto.Interfaces.Atualizavel;
 /*
  * @author Gio
  */
-public abstract class Console extends Device implements Jogavel {
+public abstract class Console extends Device implements Jogavel, Atualizavel,
+        Comparable{
     protected double [] memoria; // armazenamneto
     protected ArrayList<Jogo> jogos;  // jogos armazenados
     protected int num_jogos = 0; // número de jogos
@@ -341,5 +343,12 @@ public abstract class Console extends Device implements Jogavel {
     // funções abstratas
     public abstract void inserirControle();
     public abstract ArrayList<Jogo> menu( ArrayList<Jogo> jogos );
+    
+    @Override
     public abstract void atualizar();
+
+    @Override
+    public int compareTo(Object o) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }

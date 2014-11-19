@@ -4,7 +4,7 @@ package projeto.Outros;
  *
  * @author Gio
  */
-public class Usuario {
+public class Usuario implements Comparable {
     private String nome;
     private String username;
     
@@ -63,5 +63,10 @@ public class Usuario {
         resultado.append("Username: " + this.username + ".\n");
         
         return resultado.toString();
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

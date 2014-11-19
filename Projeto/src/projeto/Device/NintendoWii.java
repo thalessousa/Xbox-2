@@ -113,7 +113,7 @@ public class NintendoWii extends Console {
     
     @Override
     public void inserirControle(){
-        if ( this.num_controles == this.MAX_CONTROLES ){
+        if ( this.num_controles == NintendoWii.MAX_CONTROLES ){
             System.out.println("\nErro. Número máximo de controles atingido.");
         }
         else{
@@ -144,7 +144,7 @@ public class NintendoWii extends Console {
             
             this.num_controles++;
             System.out.println("\nControle inserido com sucesso.");
-            if ( this.num_controles == this.MAX_CONTROLES ){
+            if ( this.num_controles == NintendoWii.MAX_CONTROLES ){
                 System.out.println("\nAtenção. Agora o número de controles "
                         + "chegou ao máximo.");
             }      
