@@ -164,4 +164,13 @@ public class Jogo implements Atualizavel, Comparable<Jogo>{
         else if ( this.tamanho == outro.tamanho ) return 0;
         else return -1;
     }
+    
+    @Override 
+    public boolean equals( Object obj ){
+        if ( obj instanceof Jogo ){
+            Jogo c =( Jogo ) obj;
+            return ( this.nome.equals( c.nome ) );
+        }
+        else return false;
+    }
 }

@@ -1,6 +1,8 @@
 package projeto.Device;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Objects;
 import java.util.Scanner;
 import projeto.Externos.Controle;
 import projeto.Outros.Data;
@@ -352,5 +354,14 @@ public abstract class Console extends Device implements Jogavel, Atualizavel,
         if ( this.num_jogos > outro.num_jogos ) return 1;
         else if ( this.num_jogos == outro.num_jogos ) return 0;
         else return -1;
+    }
+    
+    @Override
+    public boolean equals( Object obj ){
+        if ( obj instanceof Console ){
+            Console c = ( Console )obj;
+            return ( this.nome.equals(c.nome) );
+        }
+        else return false;
     }
 }
