@@ -11,7 +11,7 @@ import projeto.Interfaces.Atualizavel;
  * @author Gio
  */
 public abstract class Console extends Device implements Jogavel, Atualizavel,
-        Comparable{
+        Comparable<Console>{
     protected double [] memoria; // armazenamneto
     protected ArrayList<Jogo> jogos;  // jogos armazenados
     protected int num_jogos = 0; // número de jogos
@@ -348,7 +348,9 @@ public abstract class Console extends Device implements Jogavel, Atualizavel,
     public abstract void atualizar();
 
     @Override
-    public int compareTo(Object o) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public int compareTo( Console outro ){
+        if ( this.num_jogos > outro.num_jogos ) return 1;
+        else if ( this.num_jogos == outro.num_jogos ) return 0;
+        else return -1;
     }
 }

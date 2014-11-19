@@ -4,7 +4,7 @@ package projeto.Outros;
  *
  * @author Gio
  */
-public class Usuario implements Comparable {
+public class Usuario implements Comparable<Usuario> {
     private String nome;
     private String username;
     
@@ -66,7 +66,9 @@ public class Usuario implements Comparable {
     }
 
     @Override
-    public int compareTo(Object o) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public int compareTo(Usuario outro) {
+        if ( this.username.length() > outro.username.length() ) return 1;
+        else if ( this.username.length() == outro.username.length() ) return 0;
+        else return -1;
     }
 }

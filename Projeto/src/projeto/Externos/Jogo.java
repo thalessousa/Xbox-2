@@ -5,7 +5,7 @@ import projeto.Interfaces.Atualizavel;
 /*
  * @author Gio
  */
-public class Jogo implements Atualizavel, Comparable{
+public class Jogo implements Atualizavel, Comparable<Jogo>{
     private String nome; // nome do jogo (hurr)
     private Data lancamento; // lançamento do jogo (durr)
     private String distribuidora; // capcom, konami, gamefreak, etc
@@ -159,7 +159,9 @@ public class Jogo implements Atualizavel, Comparable{
     }
 
     @Override
-    public int compareTo(Object o) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public int compareTo( Jogo outro ){
+        if ( this.tamanho > outro.tamanho ) return 1;
+        else if ( this.tamanho == outro.tamanho ) return 0;
+        else return -1;
     }
 }
