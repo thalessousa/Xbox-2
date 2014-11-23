@@ -2,6 +2,7 @@ package projeto.Outros;
 
 import projeto.Externos.Jogo;
 import java.util.ArrayList;
+import java.util.Collections;
 import projeto.Device.Console;
 import java.util.Scanner;
 import projeto.Device.NintendoWii;
@@ -108,17 +109,48 @@ public class Pessoa {
             if ( this.dinheiro < lista[op].getPreco() ) System.out.println("\n"
                     + "Seu dinheiro é insuficiente.\nSaindo...");
             else{
-                this.dinheiro -= lista[op].getPreco();
-                this.consoles.add( lista[op] );
-                Pessoa.num_consoles++;
-                System.out.println("\nAgradecemos a sua compra! Volte sempre!");
+                boolean existe = false;
+                
+                for ( Console x: this.consoles ){
+                    if ( x.equals(lista[op]) ){
+                        existe = true;
+                        break;
+                    }
+                }
+                if ( existe ){
+                    String resp;
+                    System.out.print("Você já possue este console. Deseja"
+                            + " comprar mesmo assim? [ s / n ]\n\n > ");
+                    resp = scan.next();
+                    if ( !resp.equals("s") && !resp.equals("n") ){
+                        System.out.println("\nResposta inválida.");
+                    }
+                    else{
+                        if ( resp.equals("s") ){
+                            this.dinheiro -= lista[op].getPreco();
+                            this.consoles.add( lista[op] );
+                            Pessoa.num_consoles++;
+                            System.out.println("\nAgradecemos a sua compra! "
+                                    + "Volte sempre!");
+                        }
+                        else System.out.println("\nOk. Saindo...");
+                    }
+                }
+                else{
+                    this.dinheiro -= lista[op].getPreco();
+                    this.consoles.add( lista[op] );
+                    Pessoa.num_consoles++;
+                    System.out.println("\nAgradecemos a sua compra! "
+                            + "Volte sempre!");
+                }
+                
             }
         }
     }
     
     public void comprarMemoria(){
-        if ( Pessoa.num_consoles == 0 ) System.out.println("Você não tem nenhum "
-                + "console!");
+        if ( Pessoa.num_consoles == 0 ) System.out.println("Você não tem "
+                + "nenhum console!");
         else{
             Scanner scan = new Scanner(System.in);
             int op;
@@ -141,8 +173,8 @@ public class Pessoa {
 
             op -= 1;
 
-            if ( op < 0 || op > Pessoa.num_consoles - 1 ) System.out.println("\n"
-                    + "Número inválido.\nSaindo...");
+            if ( op < 0 || op > Pessoa.num_consoles - 1 ) System.out.println(
+                    "\nNúmero inválido.\nSaindo...");
             else{
                 double [] lista;
                 double [] preco;
@@ -247,10 +279,40 @@ public class Pessoa {
             if ( this.dinheiro < lista[op].getPreco() ) System.out.println("\n"
                     + "Seu dinheiro é insuficiente.\nSaindo...");
             else{
-                this.dinheiro -= lista[op].getPreco();
-                this.jogos.add( lista[op] );
-                Pessoa.num_jogos++;
-                System.out.println("\nAgradecemos a sua compra! Volte sempre!");
+                boolean existe = false;
+                
+                for ( Jogo x: this.jogos ){
+                    if ( x.equals(lista[op]) ){
+                        existe = true;
+                        break;
+                    }
+                }
+                if ( existe ){
+                    String resp;
+                    System.out.print("Você já possue este jogo. Deseja"
+                            + " comprar mesmo assim? [ s / n ]\n\n > ");
+                    resp = scan.next();
+                    if ( !resp.equals("s") && !resp.equals("n") ){
+                        System.out.println("\nResposta inválida.");
+                    }
+                    else{
+                        if ( resp.equals("s") ){
+                            this.dinheiro -= lista[op].getPreco();
+                            this.jogos.add( lista[op] );
+                            Pessoa.num_jogos++;
+                            System.out.println("\nAgradecemos a sua compra! "
+                                    + "Volte sempre!");
+                        }
+                        else System.out.println("\nOk. Saindo...");
+                    }
+                }
+                else{
+                    this.dinheiro -= lista[op].getPreco();
+                    this.jogos.add( lista[op] );
+                    Pessoa.num_jogos++;
+                    System.out.println("\nAgradecemos a sua compra! "
+                            + "Volte sempre!");
+                }
             }
         }
     }
@@ -339,6 +401,9 @@ public class Pessoa {
         Scanner scan = new Scanner(System.in);
         int op = 1;
         do{
+            Collections.sort(this.consoles);
+            Collections.sort(this.jogos);
+            
             System.out.println("\n->Menu da pessoa<-");
             // mostra status
             System.out.print(this);

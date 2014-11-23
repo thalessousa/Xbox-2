@@ -316,25 +316,37 @@ public abstract class Console extends Device implements Jogavel, Atualizavel,
                             + ".");
                 }
                 else{
-                    if ( ( this.memoria[0] + games.get(op-1).getTamanho() ) > 
-                            this.memoria[1] ){
-                        System.out.println("\nErro. Memória insuficiente.");
-                        System.out.println("Precisa de mais " +
-                                ( ( this.memoria[0] + 
-                                games.get(op-1).getTamanho() )
-                                        - this.memoria[1] ) + "GB.");
-                    }
-                    else{
-                        this.jogos.add( games.get(op-1) );
-                        this.memoria[0] += games.get(op-1).getTamanho();
-                        games.remove(op-1);
-                        this.num_jogos++;
-                        System.out.println("\nJogo inserido com sucesso.");
-                        if ( this.memoria[0] == this.memoria[1] ){
-                            System.out.println("\nAtenção. Agora a memória está"
-                                    + " cheia.");
+                    boolean existe = false;
+                    
+                    for ( Jogo x: this.jogos ){
+                        if ( x.equals(games.get(op-1)) ){
+                            System.out.println("\nJogo já existe no console!");
+                            existe = true;
+                            break;
                         }
                     }
+                    if ( !existe ){
+                        if ( ( this.memoria[0] + games.get(op-1).getTamanho() )
+                                > this.memoria[1] ){
+                            System.out.println("\nErro. Memória insuficiente.");
+                            System.out.println("Precisa de mais " +
+                                    ( ( this.memoria[0] + 
+                                    games.get(op-1).getTamanho() )
+                                            - this.memoria[1] ) + "GB.");
+                        }
+                        else{
+                            this.jogos.add( games.get(op-1) );
+                            this.memoria[0] += games.get(op-1).getTamanho();
+                            games.remove(op-1);
+                            this.num_jogos++;
+                            System.out.println("\nJogo inserido com sucesso.");
+                            if ( this.memoria[0] == this.memoria[1] ){
+                                System.out.println("\nAtenção. Agora a memória "
+                                        + "está cheia.");
+                            }
+                        }
+                    }
+                    
                 }
             }
         }

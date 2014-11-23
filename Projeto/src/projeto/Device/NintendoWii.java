@@ -1,6 +1,7 @@
 package projeto.Device;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 import projeto.Externos.Controle;
 import projeto.Outros.Data;
@@ -173,6 +174,8 @@ public class NintendoWii extends Console {
         int op = 1;
         Scanner scan = new Scanner(System.in);
         do{
+            Collections.sort(this.jogos);
+
             System.out.println("\n->Menu do Nintendo Wii<-\n");
             System.out.println("Escolha a sua opção:");
             System.out.println("0 - Sair.");

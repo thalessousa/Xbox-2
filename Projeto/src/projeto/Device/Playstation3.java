@@ -1,5 +1,6 @@
 package projeto.Device;
 
+import java.util.Collections;
 import java.util.ArrayList;
 import java.util.Scanner;
 import projeto.Externos.Controle;
@@ -57,8 +58,9 @@ public class Playstation3 extends Console implements Userable {
         String resposta2 = entrada.nextLine();
         resposta2 = resposta2.replaceAll("[^\\w\\_]", "");
         boolean existe = false;
+        Usuario novo = new Usuario( resposta, resposta2 );
         for ( Usuario x : usuarios ){
-            if ( x.getUsername().equals(resposta2) ){
+            if ( x.equals( novo ) ){
                 System.out.println("\nUsername já existente.");
                 existe = true;
                 break;
@@ -66,7 +68,6 @@ public class Playstation3 extends Console implements Userable {
         }
         if ( !existe ){
                 this.num_usuarios++;
-                Usuario novo = new Usuario( resposta, resposta2 );
                 usuarios.add( novo );
                 System.out.println("\nUsuário cadastrado com sucesso.");
         }
@@ -171,6 +172,9 @@ public class Playstation3 extends Console implements Userable {
         int op = 1;
         Scanner scan = new Scanner(System.in);
         do{
+            Collections.sort(this.jogos);
+            Collections.sort(this.usuarios);
+            
             System.out.println("\n->Menu do Playstation 3<-\n");
             System.out.println("Escolha a sua opção:");
             System.out.println("0 - Sair.");

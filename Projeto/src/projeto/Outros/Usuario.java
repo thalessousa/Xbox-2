@@ -71,4 +71,13 @@ public class Usuario implements Comparable<Usuario> {
         else if ( this.username.length() == outro.username.length() ) return 0;
         else return -1;
     }
+    
+    @Override
+    public boolean equals( Object obj ){
+        if ( obj instanceof Usuario ){
+            Usuario c = ( Usuario )obj;
+            return ( this.username.equals(c.username) );
+        }
+        else return false;
+    }
 }

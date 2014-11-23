@@ -1,6 +1,7 @@
 package projeto.Device;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 import projeto.Externos.Controle;
 import projeto.Outros.Data;
@@ -267,6 +268,9 @@ public class Xbox360 extends Console implements Userable {
         int op = 1;
         Scanner scan = new Scanner(System.in);
         do{
+            Collections.sort(this.jogos);
+            Collections.sort(this.usuarios);
+            
             System.out.println("\n->Menu do Xbox 360<-\n");
             System.out.println("Escolha a sua opção:");
             System.out.println("0 - Sair.");
