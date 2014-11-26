@@ -1,7 +1,9 @@
 package projeto.Externos;
 
+import java.util.Objects;
 import projeto.Outros.Data;
 import projeto.Interfaces.Atualizavel;
+import java.util.Scanner;
 /*
  * @author Gio
  */
@@ -13,6 +15,7 @@ public class Jogo implements Atualizavel, Comparable<Jogo>{
     private double tamanho; // tamanho do jogo
     private double preco;
     private double versao; // jogos também atualizam
+    private double ULTIMA_VERSAO; // a ser definida
     
     // construtor vazio
     public Jogo(){
@@ -25,17 +28,21 @@ public class Jogo implements Atualizavel, Comparable<Jogo>{
         this.tamanho = 0.100; // 100mb
         this.preco = 0;
         this.versao = 1.0;
+        this.ULTIMA_VERSAO = 1.0;
     }
     
     // construtor
     public Jogo( String nome, Data lancamento, String distribuidora,
-            String plataforma, double tamanho, double preco ){
+            String plataforma, double tamanho, double preco, 
+            double ultima_versao ){
         this.setNome( nome );
         this.lancamento = lancamento;
         this.setDistribuidora( distribuidora );
         this.setPlataforma( plataforma );
         this.setTamanho( tamanho );
         this.setPreco( preco );
+        this.versao = 1.0;
+        this.setUltimaVersao( ultima_versao );
     }
     
     // construtor de cópia
@@ -47,6 +54,7 @@ public class Jogo implements Atualizavel, Comparable<Jogo>{
         this.tamanho = outro.tamanho;
         this.preco = outro.preco;
         this.versao = outro.versao;
+        this.ULTIMA_VERSAO = outro.ULTIMA_VERSAO;
     }
     
     // gets
@@ -76,6 +84,10 @@ public class Jogo implements Atualizavel, Comparable<Jogo>{
     
     public double getVersao(){
         return this.versao;
+    }
+    
+    public double getUltimaVersao(){
+        return this.ULTIMA_VERSAO;
     }
     
     // sets
@@ -135,6 +147,16 @@ public class Jogo implements Atualizavel, Comparable<Jogo>{
         else this.versao = versao;
     }
     
+    public void setUltimaVersao( double ultima_versao ){
+        if ( ultima_versao < 1.0 ){
+            System.out.println("\nErro. Última versão deve ser pelo menos"
+                    + " igual a 1.0.");
+            System.out.println("Inserindo valor default...");
+            this.ULTIMA_VERSAO = 1.0;
+        }
+        else this.ULTIMA_VERSAO = ultima_versao;
+    }
+    
     // outras funções
     @Override
     public String toString(){
@@ -149,13 +171,37 @@ public class Jogo implements Atualizavel, Comparable<Jogo>{
         String s = String.format("%.2f", this.preco);
         
         resultado.append("Preço: R$" + s + ".\n");
-        
+        resultado.append("Versão atual: " + this.versao + ".\n");
         return resultado.toString();
     }
     
     @Override
     public void atualizar(){
-        // faz algo
+        if ( this.versao == this.ULTIMA_VERSAO ) System.out.println("O jogo já "
+                + "está na versão mais recente!");
+        else{
+            Scanner scan = new Scanner(System.in);
+            double op;
+            System.out.println("\nVersão atual do seu jogo: " 
+                    + this.versao);
+            System.out.print("Atualizar para qual versão? [ Última versão: " 
+            + this.ULTIMA_VERSAO + " ]\n\n > ");
+            while(true){
+                    if (scan.hasNextDouble())
+                        op = scan.nextDouble();
+                    else{
+                        System.out.print("Erro. Insira um número.\n\n > ");
+                        scan.next();
+                        continue;
+                    }
+                    break;
+            }
+            if ( op > this.ULTIMA_VERSAO ){
+                System.out.println("\nErro: deve ser menor ou igual a versão mais"
+                        + " recente.");
+            }
+            else this.setVersao( op );
+        } 
     }
 
     @Override
@@ -172,5 +218,21 @@ public class Jogo implements Atualizavel, Comparable<Jogo>{
             return ( this.nome.equals( c.nome ) );
         }
         else return false;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 13 * hash + Objects.hashCode(this.nome);
+        hash = 13 * hash + Objects.hashCode(this.lancamento);
+        hash = 13 * hash + Objects.hashCode(this.distribuidora);
+        hash = 13 * hash + Objects.hashCode(this.plataforma);
+        hash = 13 * hash + (int) (Double.doubleToLongBits(this.tamanho) ^ 
+                (Double.doubleToLongBits(this.tamanho) >>> 32));
+        hash = 13 * hash + (int) (Double.doubleToLongBits(this.preco) ^ 
+                (Double.doubleToLongBits(this.preco) >>> 32));
+        hash = 13 * hash + (int) (Double.doubleToLongBits(this.versao) ^ 
+                (Double.doubleToLongBits(this.versao) >>> 32));
+        return hash;
     }
 }

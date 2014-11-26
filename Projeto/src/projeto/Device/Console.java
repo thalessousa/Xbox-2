@@ -376,4 +376,17 @@ public abstract class Console extends Device implements Jogavel, Atualizavel,
         }
         else return false;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 23 * hash + Arrays.hashCode(this.memoria);
+        hash = 23 * hash + Objects.hashCode(this.jogos);
+        hash = 23 * hash + this.num_jogos;
+        hash = 23 * hash + Objects.hashCode(this.controles);
+        hash = 23 * hash + this.num_controles;
+        hash = 23 * hash + (int) (Double.doubleToLongBits(this.versao) ^ 
+                (Double.doubleToLongBits(this.versao) >>> 32));
+        return hash;
+    }
 }

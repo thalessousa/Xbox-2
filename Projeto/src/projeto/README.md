@@ -15,12 +15,12 @@ Usar um novo repositório! - ok
   
 1.	Pelo menos 4 atributos - ok
 2.	Pelo menos 4 funções membros sem incluir get e set - ok
-3.	Diagrama UML completo (obrigatório salvar também o png do diagrama no gitHub)  - ok
+3.	Diagrama UML completo (obrigatório salvar também o png do diagrama no gitHub) - ok
 
 **Requisitos de implementação**
 
-1.	Todas as classes concretas devem vir de interfaces ou classes abstratas. Pelo menos três hierarquias de classes. Uma das hierarquias deve ter três níveis. Exemplo: Personagem >> Ciborgue >> Robocop; Class Arma (interface) >> Beretta93R - existe apenas uma hierarquia
-2.	Ao menos três interfaces. A terceira interface deve ser uma interface que liga duas hierarquias como no exemplo da interface corredor (Figura 1). - ok
+1.	Todas as classes concretas devem vir de interfaces ou classes abstratas. Pelo menos três hierarquias de classes. Uma das hierarquias deve ter três níveis. Exemplo: Personagem >> Ciborgue >> Robocop; Class Arma (interface) >> Beretta93R - ok
+2.	Ao menos três interfaces. A terceira interface deve ser uma interface que liga duas hierarquias como no exemplo da interface corredor (Figura 1). - uma hierarquia apenas
 3.	Usar a interface Comparable e sobrescrever o método compareTo em pelo menos uma hierarquia - ok
 4.	Sobrescrever equals para de Object - ok
 5.	Todas as hierarquias devem ter classes Concretas, e em uma das hierarquias, três classes Concretas relacionadas:  Exemplo Servico >> ServicoStream >> (Netflix, HBOStream, AmazonPrime, NowTv). Em uma pesquisa de 10 segundos: http://www.tomsguide.com/us/pictures-story/620-top-online-streaming-video.html - ok
@@ -35,4 +35,4 @@ Usar um novo repositório! - ok
 14.	Dividir o projeto em pacotes - ok
 15.	Sobrescrever para todas as classes o método toString - ok
 16.	Usar a classe Random do pacote java.util (java.util.Random). Nota: deve ser usado conforme o contexto do projeto. Se for usado em um método genérico sem relação com a classe e apenas para cumpri-lo, esse requisito será desconsiderado.
-17.	No main o usuário deve fazer entrada via teclado e interagir com a aplicação. Opcional de bônus: pode ser usada a classe JOptionPane do pacote javax.swing. Vejam: showInputDialog e showMessageDialog. - interação na classe Pessoa
+17.	No main o usuário deve fazer entrada via teclado e interagir com a aplicação. Opcional de bônus: pode ser usada a classe JOptionPane do pacote javax.swing. Vejam: showInputDialog e showMessageDialog. - entrada feita na classe Pessoa

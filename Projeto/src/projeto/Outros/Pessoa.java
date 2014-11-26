@@ -239,18 +239,19 @@ public class Pessoa {
         int op;
         Data data = new Data(14,11,2014);
         
-        lista[0] = new Jogo("PES 2015", data, "Konami","Xbox 360", 5.0, 141.40);
+        lista[0] = new Jogo("PES 2015", data, "Konami","Xbox 360", 5.0, 141.40,
+         1.0);
         lista[1] = new Jogo("Deus Ex", data, "Square Enix", "Xbox 360", 
-                4.0, 56.91);
+                4.0, 56.91, 1.112);
         lista[2] = new Jogo("Dark Souls", data, "Bandai", "Playstation 3", 
-                9.0, 94.91);
+                9.0, 94.91, 1.0);
         lista[3] = new Jogo("Watch Dogs", data, "Ubisoft", "Playstation 3", 
-                8.0, 94.91);
+                8.0, 94.91, 1.0);
         lista[4] = new Jogo("Call of Duty MW3", data, "Activision", 
-                "Nintendo Wii", 15.0, 56.91);
+                "Nintendo Wii", 15.0, 56.91, 1.05);
         lista[5] = new Jogo("The Legend of Zelda: Twilight Princess", data, 
                 "Nintendo", "Nintendo Wii", 
-                0.505, 129.00);
+                0.505, 129.00, 1.0);
         
         System.out.println("\nQual dos jogos você gostaria de comprar?"
                 + " [ 1 - 6 ]");
@@ -417,7 +418,8 @@ public class Pessoa {
             System.out.println("6 - Usar console.");
             System.out.println("7 - Mostrar jogos adquiridos. "
                     + "( não inseridos em um console )");
-            System.out.println("8 - Mostrar consoles.");
+            System.out.println("8 - Atualizar jogo.");
+            System.out.println("9 - Mostrar consoles.");
             System.out.print("\n > ");
             
             // verificação de dados
@@ -469,6 +471,10 @@ public class Pessoa {
                     break;
                 }
                 case 8:{
+                    atualizarJogo();
+                    break;
+                }
+                case 9:{
                     if ( Pessoa.num_consoles == 0 ) System.out.println("Não tem "
                             + "nenhum console.");
                     else{
@@ -486,6 +492,41 @@ public class Pessoa {
                 }
             }
         } while( op != 0 );
+    }
+    
+    public void atualizarJogo(){
+        if ( num_jogos == 0 ){
+            System.out.println("\nNão existe nenhum jogo ainda.");
+        }
+        else{
+            System.out.println("\nQual jogo você gostaria de atualizar?");
+            System.out.println("Lista de jogos:\n");
+            int i = 1;
+            for ( Jogo x : jogos ) {
+                System.out.println( i + " - " + x.getNome() );
+                i++;
+            }
+            System.out.print("\n > ");
+            Scanner entrada = new Scanner(System.in);
+            int resposta;
+
+            while(true){
+                if (entrada.hasNextInt())
+                    resposta = entrada.nextInt();
+                else{
+                    System.out.print("Erro. Insira um número.\n\n > ");
+                    entrada.next();
+                    continue;
+                }
+                break;
+            }
+
+            if ( resposta < 1 || resposta > num_jogos ) 
+                System.out.println("\nJogo não encontrado.");
+            else{
+                jogos.get( resposta - 1 ).atualizar();
+            }
+        }
     }
     
     @Override

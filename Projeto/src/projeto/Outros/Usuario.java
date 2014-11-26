@@ -1,5 +1,7 @@
 package projeto.Outros;
 
+import java.util.Objects;
+
 /**
  *
  * @author Gio
@@ -79,5 +81,13 @@ public class Usuario implements Comparable<Usuario> {
             return ( this.username.equals(c.username) );
         }
         else return false;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 53 * hash + Objects.hashCode(this.nome);
+        hash = 53 * hash + Objects.hashCode(this.username);
+        return hash;
     }
 }
